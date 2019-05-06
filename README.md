@@ -1,6 +1,6 @@
 # YApi cli tool
 cli tool to deploy yapi-en server
-## 环境要求
+## environment need
 * nodejs（7.6+)
 * mongodb（2.6+）
 ## install
@@ -10,8 +10,8 @@ run yapi-en server to deploy yapi-en server. after deployment run node/{path/ser
     yapi server 
 ## command
 ```
-yapi --help // 查看 yapi-cli 命令
-yapi --version //查看 yapi-cli 当前版本号
+yapi --help // list yapi-cli commands
+yapi --version //list yapi-cli current version
 ```
 ## update
 Upgrading the project version is very easy and does not affect existing project data, only the source files in the vendors directory can be effected.
