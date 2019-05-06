@@ -12,5 +12,5 @@ module.exports = {
       console.log('v' + v);
     })
   },
-  desc: '获取版本信息'
+  desc: 'get version info'
 }

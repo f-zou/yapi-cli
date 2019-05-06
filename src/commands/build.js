@@ -20,14 +20,14 @@ module.exports = {
       let name = argv.name;
       
       shell.cd('vendors');
-      utils.log('正在安装依赖...');
+      utils.log('installing dependencies...');
       shell.exec('npm install --registry https://registry.npm.taobao.org');
-      utils.log('依赖安装完成，正在编译客户端')
+      utils.log('dependencies intalled，client in compiling')
       shell.exec('ykit pack -m')
-      utils.log('已编译客户端，请重启服务器')
+      utils.log('compieled ，please restart server')
     } catch (e) {
       utils.log(e.message);
     }
   },
-  desc: '插件安装'
+  desc: 'install plugin'
 }

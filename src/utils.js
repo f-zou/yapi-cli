@@ -62,7 +62,7 @@ function github(version, type = 'npm') {
 }
 module.exports ={
   message:{
-    'fount_project_path_error': '项目目录找不到配置文件 config.json, 请确认当前目录是否为项目目录'
+    'fount_project_path_error': ' config.json is not existed in project'
   },
 
   getVersions: async function(){

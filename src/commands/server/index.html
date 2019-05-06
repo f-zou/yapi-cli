@@ -14,9 +14,9 @@
   <div id="app" style="margin-top: 100px; display: none">
 
     <div style="width: 1000px; margin: 0 auto;">
-      <h2 style="text-align: center">YApi 平台部署</h2>
+      <h2 style="text-align: center">YApi plattform deployment</h2>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="部署版本" prop="version">
+        <el-form-item label="version" prop="version">
             <el-select v-model="ruleForm.version" placeholder="请选择">
                 <el-option
                   v-for="item in ruleForm.versions"
@@ -26,52 +26,52 @@
                 </el-option>
               </el-select>
         </el-form-item>
-        <el-form-item label="公司名称" prop="company">
+        <el-form-item label="company name" prop="company">
           <el-input v-model="ruleForm.company"></el-input>
         </el-form-item>
-        <el-form-item label="部署路径" prop="root">
+        <el-form-item label="deploy root" prop="root">
             <el-input v-model="ruleForm.root"></el-input>
           </el-form-item>
-        <el-form-item label="管理员邮箱" prop="email">
+        <el-form-item label="admin email" prop="email">
           <el-input v-model="ruleForm.email"></el-input>
         </el-form-item>
 
-        <el-form-item label="网站端口号" prop="port">
+        <el-form-item label="port" prop="port">
           <el-input v-model="ruleForm.port"></el-input>
         </el-form-item>
 
-        <el-form-item label="数据库地址" prop="dbAddr">
+        <el-form-item label="database  address" prop="dbAddr">
           <el-input v-model="ruleForm.dbAddr"></el-input>
         </el-form-item>
 
-        <el-form-item label="数据库端口" prop="dbPort">
+        <el-form-item label="database port" prop="dbPort">
           <el-input v-model="ruleForm.dbPort"></el-input>
         </el-form-item>
 
-        <el-form-item label="数据库名" prop="dbName">
+        <el-form-item label="database name" prop="dbName">
           <el-input v-model="ruleForm.dbName"></el-input>
         </el-form-item>
 
-        <el-form-item label="数据库认证" prop="enableDbAuth">
+        <el-form-item label="database auth" prop="enableDbAuth">
           <el-switch on-text="" off-text v-model="ruleForm.enableDbAuth"></el-switch>
         </el-form-item>
 
-        <el-form-item v-show="ruleForm.enableDbAuth" label="数据库用户名" prop="dbUser">
+        <el-form-item v-show="ruleForm.enableDbAuth" label="database user name" prop="dbUser">
           <el-input v-model="ruleForm.dbUser"></el-input>
         </el-form-item>
-        <el-form-item v-show="ruleForm.enableDbAuth" label="数据库密码" prop="dbPass">
+        <el-form-item v-show="ruleForm.enableDbAuth" label="database password" prop="dbPass">
           <el-input v-model="ruleForm.dbPass"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">开始部署</el-button>
+          <el-button type="primary" @click="submitForm('ruleForm')">start deploying</el-button>
         </el-form-item>
       </el-form>
     </div>
 
-    <el-dialog style="min-height: 500px;" title="部署日志" :visible.sync="dialogVisible" >
+    <el-dialog style="min-height: 500px;" title="depoly log" :visible.sync="dialogVisible" >
       <div style="min-height: 500px;" >
         <div v-for="item in dialogResult" >{{item}}</div>
-        <div style="height: 50px;" v-loading="loading" element-loading-text="正在部署，请稍后...">
+        <div style="height: 50px;" v-loading="loading" element-loading-text="deploying，please wait...">
 
         </div>
     </span>
@@ -116,22 +116,22 @@
                 required: true
               },
               root: [
-                { required: true, message: '请输入部署路径' }
+                { required: true, message: 'please input deploy path' }
               ],
               email: [
-                { required: true, message: '请输入管理员邮箱' }
+                { required: true, message: 'please input email of admin' }
               ],
               port: [
-                { required: true, message: '请输入服务器端口号' }
+                { required: true, message: 'please input sever port' }
               ],
               dbAddr: [
-                { required: true, message: '请输入数据库地址' }
+                { required: true, message: 'please input database path' }
               ],
               dbPort: [
-                { required: true, message: '请输入数据库端口号' }
+                { required: true, message: 'please input database port' }
               ],
               dbName: [
-                { required: true, message: '请输入数据库名称' }
+                { required: true, message: 'please input database name' }
               ]
             }
           }

@@ -35,7 +35,7 @@ function init(config) {
     }catch(e){}
   }
   if(fileExist(path.resolve(root, 'init.lock'))){
-    throw new Error('系统已安装，如需重新安装，请清空数据库和删除init.lock文件');
+      throw new Error('system already existed. please clear db and delete init.lock to reinstall');
   }
   if(config.enableDbAuth && config.dbUser){
     data.db.user = config.dbUser;
@@ -90,7 +90,7 @@ module.exports = {
     })
     app.use(express.static(path.resolve(__dirname, './server')))
     app.listen(9090)
-    console.log('在浏览器打开 http://0.0.0.0:9090 访问。非本地服务器，请将 0.0.0.0 替换成指定的域名或ip ');
+    console.log('local visite http://0.0.0.0:9090 ');
     // if (process.platform == 'wind32') {
     //   cmd = 'open';
     // } else if (process.platform == 'linux') {
@@ -102,5 +102,5 @@ module.exports = {
     //   shell.exec(cmd +' http://0.0.0.0:9090', {async: true});
     // }catch(err){}
   },
-  desc: '可视化部署 YApi 平台'
+  desc: 'deploy yapi plattform'
 }

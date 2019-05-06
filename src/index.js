@@ -9,7 +9,7 @@ commandsFile.forEach(function (file) {
   if (path.extname(file) !== '.js') return null;
   let commandModule = require(path.resolve(commandsDir, file));
   if (!commandModule) {
-    throw new Error('找不到 module 在 ' + file + '文件');
+    throw new Error(' module in ' + file + 'file can not be found' );
   }
   let commandName = path.basename(file, '.js');
   yargs.command(commandName, commandModule.desc, commandModule.setOptions, commandModule.run);
@@ -21,10 +21,10 @@ try {
     const root = process.cwd();
     let configFilepath = path.resolve(root, 'config.json');
     if (!utils.fileExist(configFilepath)) {
-      return console.log('在项目目录找不到配置文件 config.json,请确认是否安装项目到此目录');
+      return console.log(' config.json in project can not be found');
     }
     let packageJson = require(path.resolve(root, './vendors/package.json'));
-    console.log(`当前项目版本是：${packageJson.version}`)
+    console.log(`current version：${packageJson.version}`)
   }
 
 } catch (e) {

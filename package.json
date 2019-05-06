@@ -1,18 +1,18 @@
 {
-  "name": "yapi-cli",
+  "name": "@stuttgarter/yapi-en-cli",
   "version": "1.4.0",
   "description": "",
   "main": "index.js",
   "bin": {
-    "yapi": "./bin/yapi-cli",
-    "yapi-cli": "./bin/yapi-cli"
+    "yapi": "./bin/yapi-en-cli",
+    "yapi-cli": "./bin/yapi-en-cli"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:YMFE/yapi-cli.git"
+    "url": "git@github.com:f-zou/yapi-en-cli.git"
   },
   "author": "",
   "license": "ISC",
@@ -46,8 +46,8 @@
       "warnOnFail": false,
       "maxSubjectLength": 100,
       "subjectPattern": ".+",
-      "subjectPatternErrorMsg": "请输入message信息!",
-      "helpMessage": "Commit message 格式错误, \n请查看规范: http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html"
+      "subjectPatternErrorMsg": "please input message information!",
+      "helpMessage": "Commit message with wrong format, \nvisit docs : http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html"
     }
   },
   "devDependencies": {

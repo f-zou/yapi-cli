@@ -9,12 +9,12 @@ module.exports = {
   setOptions: function (yargs) { 
     yargs.option('name', {
       alias: 'n',
-      describe: '插件名，需要写前缀 yapi-plugin- '
+      describe: 'plugin name，with prefix yapi-plugin- '
     })
     yargs.option('build', {
       alias: 'b',
       default: true,
-      describe: '是否编译客户端代码，true 为编译, false 为不编译,  默认为 true'
+      describe: 'wether to compile client code，default: true'
     })
   },
   run: function (argv) {
@@ -23,10 +23,10 @@ module.exports = {
       root = process.cwd();
       let configFilepath = path.resolve(root, 'config.json');
       if (!utils.fileExist(configFilepath)) {
-        throw new Error('项目目录找不到配置文件 config.json ');
+        throw new Error('config file config.json not found');
       }
       if( !shell.which('ykit')){
-        throw new Error('需要安装 ykit ');
+        throw new Error('need to install ykit ');
       }
       let name = argv.name;
       config = require(configFilepath);
@@ -35,10 +35,10 @@ module.exports = {
       }
 
       if (!name) {
-        throw new Error('请输入需要安装的插件Name, yapi-cli plugin --name yapi-plugin-*** ')
+        throw new Error('please input the plugin name to install, yapi-cli plugin --name yapi-plugin-*** ')
       }
       if (name.indexOf('yapi-plugin-') !== 0) {
-        throw new Error('插件name 前缀必需是 yapi-plugin-')
+        throw new Error('plugin name prefix need to be yapi-plugin-')
       }
 
       let pluginName = name.substr('yapi-plugin-'.length)
@@ -51,14 +51,14 @@ module.exports = {
         }
       })) {
         shell.cd('vendors');
-        utils.log('正在下载插件...');
+        utils.log('downloading plugin...');
         shell.exec('npm install  --registry https://registry.npm.taobao.org ' + name);
-        utils.log('更新插件成功')
+        utils.log('plugin updated')
       }else{
         shell.cd('vendors');
-        utils.log('正在下载插件...');
+        utils.log('plugin is in downloading...');
         shell.exec('npm install  --registry https://registry.npm.taobao.org ' + name);
-        utils.log('安装插件成功')
+        utils.log('plugin installed')
         config.plugins.push({
           name: pluginName
         }) 
@@ -66,15 +66,15 @@ module.exports = {
       
       fs.writeFileSync(configFilepath, JSON.stringify(config, null, '   '));
       if(argv.build === true){
-        utils.log('正在安装依赖...');
+        utils.log('intalling dependencies...');
         shell.exec('npm install --registry https://registry.npm.taobao.org');
         shell.exec('ykit pack -m')        
-        utils.log('编译客户端成功，请重启服务器')
+        utils.log('client compiled，please restart the server')
       }
       
     } catch (e) {
       utils.log(e.message);
     }
   },
-  desc: '插件安装'
+  desc: 'plugin install'
 }

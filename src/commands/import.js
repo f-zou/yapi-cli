@@ -9,7 +9,7 @@ const url = require('url')
 module.exports = {
   setOptions: function (yargs) {
     yargs.option('config', {
-      describe: '配置文件路径，默认为当前目录下 yapi-import.json',
+      describe: 'config the path of file, default file is yapi-import.json under current folder ',
       default: path.resolve(cwd, 'yapi-import.json')
     })
   },
@@ -27,7 +27,7 @@ module.exports = {
         content = JSON.stringify(content,null,2)
       }
       if(!content){
-        return console.error('json 数据不能为空')
+        return console.error('json must not be empty')
       }
       let params = {
         type: config.type,
@@ -49,5 +49,5 @@ module.exports = {
     
     
   },
-  desc: '导入接口数据'
+  desc: 'import data for interface'
 }

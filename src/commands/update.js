@@ -18,12 +18,12 @@ async function run(argv) {
     throw new Error(utils.message.fount_project_path_error);
   }
   if (!shell.which('node') || !shell.which('npm')) {
-    throw new Error('需要配置 node 和 npm 环境');
+    throw new Error('need to config node and npm environment');
   }
   let nodeVersion = shell.exec('node -v', {silent: true}).substr(1);
 
   if(!utils.compareVersion('7.6', nodeVersion)){
-    throw new Error('node 需要 7.6 或以上版本')
+    throw new Error('need node version >= 7.6 ')
   }
 
 
@@ -39,9 +39,9 @@ async function run(argv) {
     return ('v' + item) === v
   })) {
     downloadType = 'github';
-    utils.log('不存在的版本号，请确认是否存在此版本，如果不存在，按 Ctrl+C 中断更新操作');
+    utils.log('version not exist. please  Ctrl+C  to Interrupt');
   }
-  utils.log('更新版本为' + v);
+  utils.log('version updated to' + v);
   let config = require(configFilepath);
   let npmInstall = 'npm install --production --registry https://registry.npm.taobao.org';
   if (config.plugins && Array.isArray(config.plugins) && config.plugins.length > 0) {
@@ -50,9 +50,9 @@ async function run(argv) {
   }
 
   let yapiPath = path.resolve(root, 'vendors');
-  utils.log('开始下载平台文件压缩包...')
+  utils.log('Start downloading the platform file compression package..')
   await wget(yapiPath, v, downloadType);
-  utils.log('部署文件完成，正在执行 npm install...')
+  utils.log('The deployment file is complete, executing npm install...')
   shell.cd(yapiPath);
 
   shell.exec(npmInstall);
@@ -67,21 +67,21 @@ async function run(argv) {
         shell.exec('npm install ' + 'yapi-plugin-' + item.name)
       }
     })
-    utils.log('执行 ykit pack -m ...');
+    utils.log('run ykit pack -m ...');
     if( !shell.which('ykit')){
-      throw new Error('需要安装 ykit ');
+      throw new Error('need to install ykit ');
     }
     shell.exec('ykit pack -m');
   }
 
-  utils.log('更新成功，请重启服务器')
+  utils.log('updated，please restart the sever')
 }
 
 module.exports = {
   setOptions: function (yargs) {
     yargs.option('v', {
       alias: 'v',
-      describe: '部署版本'
+      describe: 'deployed version'
     })
   },
   run: function (argv) {
@@ -93,5 +93,5 @@ module.exports = {
       process.exit(1);
     })
   },
-  desc: '更新 YApi 平台版本'
+  desc: 'update YApi version'
 }

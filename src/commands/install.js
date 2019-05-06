@@ -37,19 +37,19 @@ function ensureFilepaths(root) {
 
 async function verifyConfig(config){
   if(!config.port){
-    throw new Error('端口没有配置, 请在 config.json 配置port')
+    throw new Error('please config the port in config.json')
   }
   if(!config.adminAccount){
-    throw new Error('管理员账号没有配置, 请在 config.json 配置adminAccount');
+    throw new Error('please config the admin account in config.json ');
   }
   if(!config.db || typeof config.db !== 'object'){
-    throw new Error('请在 config.json 配置db')
+    throw new Error('please config the db in  config.json')
   }
   try{
     await connect(config);
-    utils.log('连接数据库成功!');
+    utils.log('db success connected!');
   }catch(e){
-    throw new Error('连接数据库失败, '+ e.message)
+    throw new Error('db connect failed, '+ e.message)
   }
 }
 
@@ -95,12 +95,12 @@ async function run(argv){
   let configFilepath = path.resolve(root, 'config.json');
   
   if(!shell.which('node') || !shell.which('npm')){
-    throw new Error('需要配置 node 和 npm 环境');
+    throw new Error('need to config the enviroment of node 和 npm ');
   }
   let nodeVersion = shell.exec('node -v', {silent: true}).substr(1);
   
   if(!utils.compareVersion('7.6', nodeVersion)){
-    throw new Error('node 需要 7.6 或以上版本')
+      throw new Error('need node version >= 7.6 ')
   }
 
   if(!fileExist(configFilepath)){
@@ -108,30 +108,30 @@ async function run(argv){
   }
   config = require(configFilepath);
   if (!config || typeof config !== 'object') {
-    throw new Error('config 配置有误');
+    throw new Error('config is wrong configured');
   }  
   if(fileExist(path.resolve(root, 'init.lock'))){
-    throw new Error('系统已安装，如需重新安装，请清空数据库和删除init.lock文件');
+    throw new Error('system already existed. please clear db and delete init.lock to reinstall');
   }
   let v = argv.v;
 
   if(!v || typeof v !== 'string'){
-    throw new Error('版本号不能为空');
+    throw new Error('version must not be empty');
   }
-  utils.log(`当前安装版本： ${v}`) 
+  utils.log(`current version： ${v}`)
   ensureFilepaths(root);
   let domain = config.port == '80' ? 'http://127.0.0.1' : 'http://127.0.0.1:' + config.port
   try{
     await verifyConfig(config);
     let yapiPath = path.resolve(root, 'vendors');
-    utils.log('开始下载平台文件压缩包...')
+    utils.log('start to download intall package...')
     await wget(yapiPath, v);  
-    utils.log('部署文件完成，正在安装依赖库...')
+    utils.log('deployed finished, start to install dependencies...')
     shell.cd(yapiPath);
     await handleNpmInstall();
-    utils.log('依赖库安装完成，正在初始化数据库mongodb...')
+    utils.log('install dependecnies finished，start to init mongodb正...')
     await handleServerInstall();
-    utils.log(`部署成功，请切换到部署目录，输入： "node vendors/server/app.js" 指令启动服务器, 然后在浏览器打开 ${domain} 访问`);
+    utils.log(`deployed successfully，please go to the deploy path to run the server with this command： "node vendors/server/app.js" and visit ${domain} `);
   }catch(e){
     throw new Error(e.message)
   }
@@ -141,12 +141,12 @@ async function run(argv){
 module.exports = {
   setOptions: function (yargs) {
     yargs.option('dir', {
-      describe: '部署路径，默认为当前目录',
+      describe: 'path of deployment，default current folder',
       default: process.cwd()
     })
     yargs.option('v', {
       alias: 'v',
-      describe: '部署版本'
+      describe: 'version'
     })
   },
   run: function (argv) {
@@ -158,5 +158,5 @@ module.exports = {
       process.exit(1);
     })
   },
-  desc: '部署 YApi 项目,建议使用 yapi server 进行可视化部署'
+  desc: 'deploy YApi project,suguest to run yapi server to deploy'
 }
