@@ -6,12 +6,12 @@ cli tool to deploy yapi-en server
 ## install
 run yapi-en server to deploy yapi-en server. after deployment run node/{path/server/app.js} to start the serve. default password is ymfe.org for login.。
 
-    npm install -g yapi-cli --registry https://registry.npm.taobao.org
-    yapi server 
+    npm install -g yapi-en-cli
+    yapi-en server 
 ## command
 ```
-yapi --help // list yapi-cli commands
-yapi --version //list yapi-cli current version
+yapi --help // list yapi-en-cli commands
+yapi --version //list yapi-en-cli current version
 ```
 ## update
 Upgrading the project version is very easy and does not affect existing project data, only the source files in the vendors directory can be effected.
