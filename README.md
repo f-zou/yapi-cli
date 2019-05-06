@@ -6,7 +6,7 @@ cli tool to deploy yapi-en server
 ## install
 run yapi-en server to deploy yapi-en server. after deployment run node/{path/server/app.js} to start the serve. default password is ymfe.org for login.。
 
-    npm install -g yapi-en-cli
+    npm install -g @stuttgarter/yapi-en-cli
     yapi-en server 
 ## command
 ```

@@ -1,6 +1,7 @@
 {
   "name": "@stuttgarter/yapi-en-cli",
-  "version": "1.4.0",
+  "version": "0.1.0",
+  "orgin-vserion":"1.4.0",
   "description": "",
   "main": "index.js",
   "bin": {
