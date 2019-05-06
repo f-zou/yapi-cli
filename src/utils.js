@@ -4,114 +4,86 @@ const semver = require('semver')
 const axios = require('axios')
 
 function oldVersion(){
-  return [
-    "1.4.1",
-    "1.3.23",
-    "1.3.22",
-    "1.3.21",
-    "1.3.20",
-    "1.3.19",
-    "1.3.18",
-    "1.3.17",
-    "1.3.16",
-    "1.3.14",
-    "1.3.12",
-    "1.3.11",
-    "1.3.9",
-    "1.3.8",
-    "1.3.7",
-    "1.3.6",
-    "1.3.5",
-    "1.3.4",
-    "1.3.3",
-    "1.3.1",
-    "1.2.9",
-    "1.2.8",
-    "1.2.7",
-    "1.2.5",
-    "1.2.4",
-    "1.2.3",
-    "1.2.0",
-    "1.1.2",
-    "1.1.1",
-    "1.1.0"
-  ]
+    return [
+        "0.1.1",
+        "0.1.0"
+    ]
 }
 
 
 function github(version, type = 'npm') {
-  let url;
-  if(version[0] === 'v' || version[0] === 'V'){
-    version = version.substr(1)
-  }
+    let url;
+    if(version[0] === 'v' || version[0] === 'V'){
+        version = version.substr(1)
+    }
 
-  if(oldVersion().indexOf(version) !== -1){
-    type = 'qunar'
-  }
+    if(oldVersion().indexOf(version) !== -1){
+        type = 'qunar'
+    }
 
-  if(type === 'github'){
-    version = 'v' + version;
-    url = 'https://github.com/YMFE/yapi/archive/' + version + '.zip'
-  }else if(type === 'npm'){
-    url = `http://registry.npm.taobao.org/yapi-vendor/download/yapi-vendor-${version}.tgz`
-  }else {
-    version = 'v' + version;
-    url = 'http://yapi.demo.qunar.com/publicapi/archive/' + version;
-  }
-  return url
+    if(type === 'github'){
+        version = 'v' + version;
+        url = 'https://github.com/f-zou/yapi-en/archive/' + version + '.zip'
+    }else if(type === 'npm'){
+        url = `https://registry.npmjs.org/@stuttgarter/yapi-en/-/yapi-en-${version}.tgz`
+    }else {
+        version = 'v' + version;
+        url = '';
+    }
+    return url
 }
 module.exports ={
-  message:{
-    'fount_project_path_error': ' config.json is not existed in project'
-  },
+    message:{
+        'fount_project_path_error': ' config.json is not existed in project'
+    },
 
-  getVersions: async function(){
-    let info = await axios.get('https://www.easy-mock.com/mock/5c2851e3d84c733cb500c3b9/yapi/versions');
-    let versions = info.data.data;
-    console.log(versions)
-    return [].concat(versions, oldVersion())
-  },
+    getVersions: async function(){
+        let info = await axios.get('https://www.easy-mock.com/mock/5c2851e3d84c733cb500c3b9/yapi/versions');
+        let versions = info.data.data;
+        console.log(versions)
+        return [].concat(versions, oldVersion())
+    },
 
-  log: function(msg){
-    console.log(msg);
-  },
-  error: function(error){
-    console.error(error);
-  },
-  wget: function ( dest, v, type) {
-    const url = github(v, type);
-    const cmd = download(url, dest, { extract: true, strip: 1 });
-    console.log(url)
-    cmd.stdout = process.stdout;  
-    return cmd;
-  },
-  fileExist: function (filePath) {
-    try {
-      return fs.statSync(filePath).isFile();
-    } catch (err) {
-      return false;
-    }
-  },
-  compareVersion: function compareVersion(version, bigVersion){
-    version = version.split(".");
-    bigVersion = bigVersion.split(".");
-    for(let i = 0; i< version.length; i++){
-      version[i] = +version[i];
-      bigVersion[i] = +bigVersion[i];
-      if(version[i] > bigVersion[i]){
-        return false;
-      }else if(version[i] < bigVersion[i]){
+    log: function(msg){
+        console.log(msg);
+    },
+    error: function(error){
+        console.error(error);
+    },
+    wget: function ( dest, v, type) {
+        const url = github(v, type);
+        const cmd = download(url, dest, { extract: true, strip: 1 });
+        console.log(url)
+        cmd.stdout = process.stdout;
+        return cmd;
+    },
+    fileExist: function (filePath) {
+        try {
+            return fs.statSync(filePath).isFile();
+        } catch (err) {
+            return false;
+        }
+    },
+    compareVersion: function compareVersion(version, bigVersion){
+        version = version.split(".");
+        bigVersion = bigVersion.split(".");
+        for(let i = 0; i< version.length; i++){
+            version[i] = +version[i];
+            bigVersion[i] = +bigVersion[i];
+            if(version[i] > bigVersion[i]){
+                return false;
+            }else if(version[i] < bigVersion[i]){
+                return true;
+            }
+        }
         return true;
-      }
+    },
+    handleVersion: function(version){
+        if(!version) return version;
+        version = version  + '';
+        if(version[0] === 'v'){
+            return version.substr(1);
+        }
+        return version;
     }
-    return true;
-  },
-  handleVersion: function(version){
-    if(!version) return version;
-    version = version  + '';
-    if(version[0] === 'v'){
-      return version.substr(1);
-    }
-    return version;
-  }
 }
