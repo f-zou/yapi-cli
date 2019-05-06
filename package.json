@@ -1,12 +1,12 @@
 {
   "name": "@stuttgarter/yapi-en-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "orgin-vserion":"1.4.0",
   "description": "",
   "main": "index.js",
   "bin": {
-    "yapi": "./bin/yapi-en-cli",
-    "yapi-cli": "./bin/yapi-en-cli"
+    "yapi-en-cli": "./bin/yapi-en-cli",
+    "yapi-en": "./bin/yapi-en-cli"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
