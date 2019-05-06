@@ -41,7 +41,11 @@ module.exports ={
         let info = await axios.get('https://www.easy-mock.com/mock/5c2851e3d84c733cb500c3b9/yapi/versions');
         let versions = info.data.data;
         console.log(versions)
-        return [].concat(versions, oldVersion())
+        //return [].concat(versions, oldVersion())
+        return [
+            "0.1.1",
+            "0.1.0"
+        ];
     },
 
     log: function(msg){
