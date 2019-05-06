@@ -129,7 +129,7 @@ async function run(argv){
     utils.log('deployed finished, start to install dependencies...')
     shell.cd(yapiPath);
     await handleNpmInstall();
-    utils.log('install dependecnies finished，start to init mongodb正...')
+    utils.log('install dependecnies finished，start to init mongodb...')
     await handleServerInstall();
     utils.log(`deployed successfully，please go to the deploy path to run the server with this command： "node vendors/server/app.js" and visit ${domain} `);
   }catch(e){

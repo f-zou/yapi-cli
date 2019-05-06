@@ -10,14 +10,14 @@ run yapi-en server to deploy yapi-en server. after deployment run node/{path/ser
     yapi-en server 
 ## command
 ```
-yapi --help // list yapi-en-cli commands
-yapi --version //list yapi-en-cli current version
+yapi-en --help // list yapi-en-cli commands
+yapi-en --version //list yapi-en-cli current version
 ```
 ## update
 Upgrading the project version is very easy and does not affect existing project data, only the source files in the vendors directory can be effected.
 ```
 cd  {project}
-yapi ls //list version
-yapi update //update to current version
-yapi update -v {Version} //update to a version
+yapi-en ls //list version
+yapi-en update //update to current version
+yapi-en update -v {Version} //update to a version
 ```
