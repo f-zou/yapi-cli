@@ -5,6 +5,8 @@ const axios = require('axios')
 
 function oldVersion(){
     return [
+        "0.1.6",
+        "0.1.5",
         "0.1.4"
     ]
 }
@@ -34,7 +36,7 @@ module.exports ={
         //console.log(versions)
         //return [].concat(versions, oldVersion())
         return [
-            "0.1.4"
+            "0.1.6"
         ];
     },
 
