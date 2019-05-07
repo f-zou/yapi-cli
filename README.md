@@ -1,5 +1,5 @@
 # YApi cli tool
-cli tool to deploy yapi-en server
+cli tool english version to deploy yapi-en server
 ## environment need
 * nodejs（7.6+)
 * mongodb（2.6+）
@@ -7,6 +7,8 @@ cli tool to deploy yapi-en server
 run yapi-en server to deploy yapi-en server. after deployment run node/{path/server/app.js} to start the serve. default password is ymfe.org for login.。
 
     npm install -g @stuttgarter/yapi-en-cli
+    mkdir project_name
+    cd project_name
     yapi-en server 
 ## command
 ```
@@ -21,3 +23,4 @@ yapi-en ls //list version
 yapi-en update //update to current version
 yapi-en update -v {Version} //update to a version
 ```
+[original chinese version](https://github.com/YMFE)
