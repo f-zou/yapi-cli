@@ -19,17 +19,9 @@ function github(version, type = 'npm') {
     if(oldVersion().indexOf(version) !== -1){
         type = 'qunar'
     }
+    url = `https://registry.npmjs.org/@stuttgarter/yapi-en/-/yapi-en-${version}.tgz`;
 
-    if(type === 'github'){
-        version = 'v' + version;
-        url = 'https://github.com/f-zou/yapi-en/archive/' + version + '.zip'
-    }else if(type === 'npm'){
-        url = `https://registry.npmjs.org/@stuttgarter/yapi-en/-/yapi-en-${version}.tgz`
-    }else {
-        version = 'v' + version;
-        url = '';
-    }
-    return url
+    return url;
 }
 module.exports ={
     message:{
